@@ -546,11 +546,12 @@ const snoowrap = class snoowrap {
     text,
     title,
     url,
-    subreddit_name, subredditName = subreddit_name
+    subreddit_name, subredditName = subreddit_name,
+    richtext_json
   }) {
     return this._post({uri: 'api/submit', form: {
       api_type, captcha: captchaResponse, iden: captchaIden, sendreplies: sendReplies, sr: subredditName, kind, resubmit,
-      crosspost_fullname, text, title, url
+      crosspost_fullname, text, title, url, richtext_json, 
     }}).tap(handleJsonErrors(this)).then(result => this.getSubmission(result.json.data.id));
   }
   /**
@@ -575,7 +576,7 @@ const snoowrap = class snoowrap {
   * // (new selfpost created on reddit)
   */
   submitSelfpost (options) {
-    return this._submit({...options, kind: 'self'});
+    return this._submit({kind:'self', ...options});
   }
   /**
   * @summary Creates a new link submission on the given subreddit.
