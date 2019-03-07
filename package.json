@@ -5,6 +5,7 @@
   "description": "A JavaScript wrapper for the reddit API",
   "main": "dist/snoowrap.js",
   "scripts": {
+    "install": "npm install && ./node_modules/babel-cli/bin/babel.js  -q -d dist/ src/",
     "compile": "babel -q -d dist/ src/",
     "lint": "eslint --ignore-path .gitignore . --cache",
     "test": "npm run lint && npm run test:mocha",
